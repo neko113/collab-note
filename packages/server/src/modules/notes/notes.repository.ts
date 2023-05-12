@@ -87,7 +87,6 @@ const noteSelector = {
 };
 
 const noteListSelector = {
-  content: false,
   owner: {
     select: {
       id: true,

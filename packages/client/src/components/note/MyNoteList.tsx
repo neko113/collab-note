@@ -1,26 +1,32 @@
 import styled from '@emotion/styled';
 import { Carousel } from '../common';
+import useUser from '~/hooks/useUser';
+import { useGetNotesListByUserId } from '~/hooks/queries/note';
+import NoteListItem from './NoteListItem';
 
 const MyNoteList = () => {
-  // 랜덤 밝은 색 컬러 생성기
+  const user = useUser();
+
+  const { data } = useGetNotesListByUserId(user?.id);
 
   return (
     <Container>
-      <Title>My Note List</Title>
-      <Carousel>
-        {Array.from({ length: 30 }).map((_, idx) => (
-          <div
-            key={idx}
-            style={{
-              width: '350px',
-              height: '300px',
-              paddingRight: '1rem',
-              backgroundClip: 'content-box',
-              backgroundColor: `${idx % 2 == 0 ? '#70bbf5' : '#edf9b2'}`,
-            }}
-          />
-        ))}
-      </Carousel>
+      {user && (
+        <>
+          <Title>My Note List</Title>
+          <Carousel>
+            {data?.list.map((note, idx) => {
+              return (
+                <NoteListItem
+                  key={note.id}
+                  note={note}
+                  color={idx % 2 === 0 ? '#70BBF5' : '#EDF9B2'}
+                />
+              );
+            })}
+          </Carousel>
+        </>
+      )}
     </Container>
   );
 };
