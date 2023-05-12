@@ -10,7 +10,7 @@ export class NoteResponseDto {
   title: string;
 
   @Expose()
-  content: JSON;
+  content: string;
 
   @Expose()
   @Type(() => UserResponseDto)

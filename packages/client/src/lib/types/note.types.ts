@@ -3,7 +3,7 @@ import { UserResponse } from './user.types';
 export interface NoteResponse {
   id: number;
   title: string;
-  content: JSON; // nodeMap
+  content: string; //TODO: nodeMap
   ownerId: number;
   owner: UserResponse;
   createdAt: string;
@@ -17,5 +17,4 @@ export interface NoteListResponse {
 
 export interface CreateNoteParams {
   title: string;
-  content: string; // json stringified
 }

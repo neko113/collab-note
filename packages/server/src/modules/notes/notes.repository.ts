@@ -59,7 +59,7 @@ export class NotesRepository {
     return await this.prismaService.note.create({
       data: {
         title: dto.title,
-        content: JSON.stringify(dto.content), //TODO: 이 부분 좀 봐야할 듯...
+        content: '',
         ownerId: userId,
       },
     });
