@@ -30,7 +30,7 @@ model User {
 model Note {
   id        Int      @id @default(autoincrement())
   title     String
-  content   Json //nodeMap
+  content   String //TODO: nodeMap
   owner     User     @relation(fields: [ownerId], references: [id])
   ownerId   Int
   createdAt DateTime @default(now())

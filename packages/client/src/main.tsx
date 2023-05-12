@@ -11,6 +11,7 @@ import { ThemeProvider } from '@emotion/react';
 import { lightTheme } from '~/lib/styles/themes';
 import { GlobalStyle } from '~/GlobalStyle';
 import { BrowserRouter } from 'react-router-dom';
+import ModalProvider from './components/base/ModalProvider';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,10 +24,11 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      <ReactQueryDevtools initialIsOpen={false} />
       <ThemeProvider theme={lightTheme}>
         <GlobalStyle />
         <App />
+        <ModalProvider />
       </ThemeProvider>
     </QueryClientProvider>
   </BrowserRouter>,
