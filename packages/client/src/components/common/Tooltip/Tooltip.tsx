@@ -2,12 +2,14 @@ import TooltipContent from './TooltipContent';
 import * as S from './Tooltip.styles';
 import { useRef, useState } from 'react';
 import { Placement } from './placement';
+import { NormalColorType } from '~/lib/styles';
 
 export interface TooltipProps {
   children: React.ReactNode;
   placement?: Placement;
   content?: React.ReactNode;
   offset?: number;
+  color?: NormalColorType;
 }
 
 const Tooltip = ({
@@ -15,6 +17,7 @@ const Tooltip = ({
   placement = 'top',
   content,
   offset,
+  color = 'primary',
   ...props
 }: TooltipProps) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -25,6 +28,7 @@ const Tooltip = ({
     parent: ref,
     visible,
     offset,
+    color,
   };
 
   const handleChangeVisible = (nextState: boolean) => {

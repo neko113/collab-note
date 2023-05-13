@@ -10,6 +10,7 @@ import {
   getPlacement,
   getRect,
 } from './placement';
+import { NormalColorType } from '~/lib/styles';
 
 interface TooltipContentProps {
   placement?: Placement;
@@ -17,6 +18,7 @@ interface TooltipContentProps {
   children?: React.ReactNode;
   parent?: MutableRefObject<HTMLElement | null> | undefined;
   offset?: number;
+  color?: NormalColorType;
 }
 
 const TooltipContent = ({
@@ -24,6 +26,7 @@ const TooltipContent = ({
   visible,
   children,
   offset = 12,
+  color = 'primary',
   parent,
 }: TooltipContentProps) => {
   const el = usePortal('tooltip');
@@ -58,6 +61,7 @@ const TooltipContent = ({
         top: rect.top,
         transform: rect.transform,
       }}
+      color={color}
     >
       <S.StyledTooltip>
         <S.StyledTooltipArrow
