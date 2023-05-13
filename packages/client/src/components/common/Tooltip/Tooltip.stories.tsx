@@ -43,9 +43,9 @@ export const Placement: Story = {
   render: () => {
     return (
       <Container>
-        <Tooltip placement="right" content="Boooooom!">
+        <Tooltip placement="left" content="Boooooom!">
           <Button shadow size="md">
-            Right
+            Left
           </Button>
         </Tooltip>
         <Tooltip placement="top" content="Boooooom!">

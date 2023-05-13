@@ -56,7 +56,7 @@ const TooltipContent = ({
   return createPortal(
     <S.StyledTooltipContent
       visible={visible}
-      style={{
+      tooltipPlacement={{
         left: rect.left,
         top: rect.top,
         transform: rect.transform,
@@ -65,7 +65,7 @@ const TooltipContent = ({
     >
       <S.StyledTooltip>
         <S.StyledTooltipArrow
-          style={{
+          tooltipIconPlacement={{
             left,
             top,
             right,
