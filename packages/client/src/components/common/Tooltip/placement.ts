@@ -42,6 +42,14 @@ export const defaultTooltipPlacement = {
   transform: 'none',
 };
 
+export interface TooltipIconPlacement {
+  top: string;
+  left: string;
+  right: string;
+  bottom: string;
+  transform: string;
+}
+
 export const getRect = (ref: MutableRefObject<HTMLElement | null>) => {
   if (!ref || !ref.current) return defaultRect;
 
@@ -83,6 +91,47 @@ export const getPlacement = (
       top: `${rect.top + rect.height / 2}px`,
       left: `${rect.right + offset}px`,
       transform: 'translate(0, -50%)',
+    },
+  };
+
+  return placements[placement];
+};
+
+export const getIconPlacement = (
+  placement: Placement,
+  offset: number,
+): TooltipIconPlacement => {
+  const placements = {
+    top: {
+      top: 'auto',
+      right: 'auto',
+      left: '50%',
+      bottom: '0px',
+      transform: 'translate(-50%, 100%) rotate(45deg)',
+    },
+
+    bottom: {
+      top: `0px`,
+      right: 'auto',
+      left: '50%',
+      bottom: 'auto',
+      transform: 'translate(-50%, -100%) rotate(225deg)',
+    },
+
+    left: {
+      top: '50%',
+      right: `-${offset - 1}px`,
+      left: 'auto',
+      bottom: 'auto',
+      transform: 'translate(100%, -50%) rotate(-45deg)',
+    },
+
+    right: {
+      top: '50%',
+      right: 'auto',
+      left: `-${offset - 1}px`,
+      bottom: 'auto',
+      transform: 'translate(-100%, -50%) rotate(135deg)',
     },
   };
 

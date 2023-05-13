@@ -6,6 +6,15 @@ export const StyledTooltipTrigger = styled.div`
   display: inherit;
 `;
 
+export const StyledTooltipArrow = styled.div`
+  display: none;
+  border-radius: 0 0 2px 0;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #ccc;
+`;
+
 export const StyledTooltipContent = styled.div<{ visible: boolean }>`
   position: absolute;
   display: none;
@@ -18,6 +27,9 @@ export const StyledTooltipContent = styled.div<{ visible: boolean }>`
     css`
       display: block;
       opacity: 1;
+      ${StyledTooltipArrow} {
+        display: block;
+      }
     `};
 `;
 

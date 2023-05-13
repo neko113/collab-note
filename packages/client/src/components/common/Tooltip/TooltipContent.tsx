@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useState } from 'react';
+import { MutableRefObject, useEffect, useMemo, useState } from 'react';
 import * as S from './Tooltip.styles';
 import { createPortal } from 'react-dom';
 import usePortal from '~/hooks/usePortal';
@@ -6,6 +6,7 @@ import {
   Placement,
   TooltipPlacement,
   defaultTooltipPlacement,
+  getIconPlacement,
   getPlacement,
   getRect,
 } from './placement';
@@ -37,6 +38,12 @@ const TooltipContent = ({
   };
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { transform, top, left, right, bottom } = useMemo(
+    () => getIconPlacement(placement, 5),
+    [placement],
+  );
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     updateRect();
   }, [visible]);
@@ -52,7 +59,18 @@ const TooltipContent = ({
         transform: rect.transform,
       }}
     >
-      <S.StyledTooltip>{children}</S.StyledTooltip>
+      <S.StyledTooltip>
+        <S.StyledTooltipArrow
+          style={{
+            left,
+            top,
+            right,
+            bottom,
+            transform,
+          }}
+        />
+        {children}
+      </S.StyledTooltip>
     </S.StyledTooltipContent>,
     el,
   );
