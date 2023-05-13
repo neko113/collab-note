@@ -43,9 +43,9 @@ export const Placement: Story = {
   render: () => {
     return (
       <Container>
-        <Tooltip placement="left" content="Boooooom!">
+        <Tooltip placement="right" content="Boooooom!">
           <Button shadow size="md">
-            Left
+            Right
           </Button>
         </Tooltip>
         <Tooltip placement="top" content="Boooooom!">
@@ -67,3 +67,45 @@ export const Placement: Story = {
     );
   },
 };
+
+export const Color: Story = {
+  render: () => {
+    return (
+      <FlexColumn>
+        <Tooltip placement="right" content="Boooooom!" color="primary">
+          <Button shadow size="md" color="primary">
+            Hover me
+          </Button>
+        </Tooltip>
+        <Tooltip placement="right" content="Boooooom!" color="success">
+          <Button shadow size="md" color="success">
+            Hover me
+          </Button>
+        </Tooltip>
+        <Tooltip placement="right" content="Boooooom!" color="secondary">
+          <Button shadow size="md" color="secondary">
+            Hover me
+          </Button>
+        </Tooltip>
+        <Tooltip placement="right" content="Boooooom!" color="warning">
+          <Button shadow size="md" color="warning">
+            Hover me
+          </Button>
+        </Tooltip>
+        <Tooltip placement="right" content="Boooooom!" color="error">
+          <Button shadow size="md" color="error">
+            Hover me
+          </Button>
+        </Tooltip>
+      </FlexColumn>
+    );
+  },
+};
+
+const FlexColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-left: 5rem;
+  margin-top: 2rem;
+`;
