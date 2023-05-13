@@ -149,8 +149,7 @@ export class LinkedList {
 
       return targetNode.id;
     } catch (e) {
-      console.error('deleteByIndex error\n', e);
-      return null;
+      throw new Error(`deleteByIndex failed, ${e}`);
     }
   }
 
