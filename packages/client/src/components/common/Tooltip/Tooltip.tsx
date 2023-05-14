@@ -22,7 +22,6 @@ const Tooltip = ({
 }: TooltipProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  const timer = useRef<number>();
 
   const contentProps = {
     placement,
@@ -33,22 +32,7 @@ const Tooltip = ({
   };
 
   const handleChangeVisible = (nextState: boolean) => {
-    const clear = () => {
-      clearTimeout(timer.current);
-      timer.current = undefined;
-    };
-    const handler = (nextState: boolean) => {
-      setVisible(nextState);
-      clear();
-    };
-
-    clear();
-    if (nextState) {
-      timer.current = window.setTimeout(() => handler(true), 100);
-
-      return;
-    }
-    timer.current = window.setTimeout(() => handler(false), 100);
+    setVisible(nextState);
   };
 
   return (
