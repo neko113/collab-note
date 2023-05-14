@@ -12,6 +12,15 @@ export interface TooltipProps {
   color?: NormalColorType;
 }
 
+/**
+ * @example
+ * ```tsx
+ * <Tooltip content="Tooltip Content" color="error" placement="left">
+ *  <Button>Button</Button>
+ * </Tooltip>
+ * ```
+ */
+
 const Tooltip = ({
   children,
   placement = 'top',
