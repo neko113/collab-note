@@ -1,8 +1,10 @@
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const Container = styled.div<{
-  status: 'play' | 'done' | 'pending' | 'unset';
+  progressStatus: 'playing' | 'completed' | 'pending' | 'unset';
+  progressPercent: number;
+  progressDuration: `${number}s` | '';
 }>`
   width: 100%;
   height: 4px;
@@ -17,56 +19,48 @@ export const Container = styled.div<{
     border-radius: 0.1875rem;
     // 파란색
     background-color: #007aff;
+    animation-duration: ${({ progressDuration }) => progressDuration};
+    width: ${({ progressPercent }) => `${progressPercent}%`};
   }
 
-  ${({ status }) =>
-    status === 'play' &&
+  ${({ progressStatus }) =>
+    progressStatus === 'playing' &&
     css`
       .percent {
-        animation-name: setAnimationContent;
+        animation-name: ${fillWidth};
         animation-play-state: running;
         animation-fill-mode: forwards;
         animation-timing-function: linear;
-
-        @keyframes setAnimationContent {
-          from {
-            width: 0%;
-          }
-
-          to {
-            width: 100%;
-          }
-        }
       }
     `}
 
-  ${({ status }) =>
-    status === 'done' &&
+  ${({ progressStatus }) =>
+    progressStatus === 'completed' &&
     css`
-      animation: fadeOut 0.2s linear forwards 0.5s;
-
-      @keyframes fadeOut {
-        from {
-          opacity: 1;
-        }
-
-        to {
-          opacity: 0;
-        }
-      }
+      animation: ${fadeOut} 0.2s linear forwards 0.5s;
 
       .percent {
-        animation: full 0.2s ease-in forwards;
-
-        @keyframes full {
-          from {
-            width: 0%;
-          }
-
-          to {
-            width: 100%;
-          }
-        }
+        animation: ${fillWidth} 0.2s ease-in forwards;
       }
     `}
+`;
+
+const fillWidth = keyframes`
+  from {
+    width: 0%;
+  }
+  
+  to {
+    width: 100%;
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  
+  to {
+    opacity: 0;
+  }
 `;

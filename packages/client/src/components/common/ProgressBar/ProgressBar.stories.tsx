@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     percent: 10,
-    animation: 'pending',
+    progressStatus: 'unset',
     duration: '5s',
   },
 };
