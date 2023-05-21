@@ -14,7 +14,8 @@ const ProgressBar = ({
 }: ProgressBarProps) => {
   return (
     <S.Container {...props} status={animation}>
-      <S.Percent
+      <div
+        className="percent"
         style={{
           width: `${percent}%`,
           animationDuration: animation === 'play' ? duration : '',

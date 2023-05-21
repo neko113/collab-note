@@ -1,4 +1,4 @@
-import { css, keyframes } from '@emotion/react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const Container = styled.div<{
@@ -8,53 +8,65 @@ export const Container = styled.div<{
   height: 4px;
   position: relative;
   border-radius: 0.1875rem;
-  background-color: #d5dedf;
+  background-color: #e6e6e6;
 
-  ${({ status }) => {
-    if (status === 'play') {
-      return css`
-        div {
-          animation-play-state: running;
-          animation-fill-mode: forwards;
-          animation-timing-function: linear;
-
-          animation: ${play};
-        }
-      `;
-    } else if (status === 'done') {
-      return css`
-        animation: ${done} 0.2s linear forwards 0.5s;
-
-        div {
-          animation: ${play} 0.2s ease-in forwards;
-        }
-      `;
-    }
-  }}
-`;
-
-const play = keyframes`
-  from {
+  .percent {
     width: 0%;
+    height: 100%;
+    transition: width 0.5s ease;
+    border-radius: 0.1875rem;
+    // 파란색
+    background-color: #007aff;
   }
-  to {
-    width: 100%;
-  }
-`;
 
-const done = keyframes`
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-`;
+  ${({ status }) =>
+    status === 'play' &&
+    css`
+      .percent {
+        animation-name: setAnimationContent;
+        animation-play-state: running;
+        animation-fill-mode: forwards;
+        animation-timing-function: linear;
 
-export const Percent = styled.div`
-  width: 0%;
-  height: 100%;
-  transition: width 0.5s ease;
-  border-radius: 0.1875rem;
-  background-color: #317172;
+        @keyframes setAnimationContent {
+          from {
+            width: 0%;
+          }
+
+          to {
+            width: 100%;
+          }
+        }
+      }
+    `}
+
+  ${({ status }) =>
+    status === 'done' &&
+    css`
+      animation: fadeOut 0.2s linear forwards 0.5s;
+
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+
+        to {
+          opacity: 0;
+        }
+      }
+
+      .percent {
+        animation: full 0.2s ease-in forwards;
+
+        @keyframes full {
+          from {
+            width: 0%;
+          }
+
+          to {
+            width: 100%;
+          }
+        }
+      }
+    `}
 `;

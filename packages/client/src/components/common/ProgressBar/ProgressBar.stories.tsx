@@ -17,5 +17,6 @@ export const Default: Story = {
   args: {
     percent: 10,
     animation: 'pending',
+    duration: '5s',
   },
 };
