@@ -27,10 +27,19 @@ export const Container = styled.div<{
     progressStatus === 'playing' &&
     css`
       .percent {
-        animation-name: ${fillWidth};
+        animation-name: setAnimationContent;
         animation-play-state: running;
         animation-fill-mode: forwards;
         animation-timing-function: linear;
+      }
+
+      @keyframes setAnimationContent {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 100%;
+        }
       }
     `}
 
